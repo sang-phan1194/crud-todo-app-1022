@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&display=swap');
+
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.app-wrapper {
+  width: 100%;
+  height: 100vh;
+  background-color: hsl(46, 70%, 60%);
+  overflow-y: scroll;
+}
+
+.app-container {
+  width: 60%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+
+  @include mobile() {
+    width: 100%;
+  }
+
+  @include tablet() {
+    width: 75%;
+  }
+
+  h2 {
+    font-size: 2.8rem;
+  }
+
+  /* shared styles for forms: input form & edit form */
+  .input-form {
+    width: 100%;
+    height: 2.2rem;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+
+    input {
+      width: 50%;
+      max-width: 17rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 4px;
+      outline: none;
+    }
+
+    button {
+      border: none;
+      border-radius: 3px;
+      width: 3rem;
+      font-size: 1.2rem;
+      color: #fff;
+      background-color: hsl(147, 100%, 35%);
+
+      &:hover {
+        cursor: pointer;
+        background-color: hsl(147, 100%, 30%);
+
+      }
+    }
+  }
+
+  /* styles for list todos */
+  ul {
+    width: 70%;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column-reverse;
+    padding: 2rem 0;
+  }
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+    padding: 0rem 1rem;
+    background-color: #fff;
+    border-radius: 5px;
+
+    @include tablet() {
+      padding: 0rem 0.4rem;
+    }
+
+    .content-wrapper {
+      display: flex;
+      gap: 0.3rem;
+
+      .checked {
+        text-decoration: line-through;
+        font-style: italic;
+        color: hsl(0, 0%, 70%);
+      }
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+
+      button {
+        width: 2.7rem;
+        height: 2rem;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &.edit-btn {
+          background-color: hsl(200, 99%, 52%);
+
+          &:hover {
+            background-color: hsl(200, 99%, 45%);
+          }
+        }
+
+        &.delete-btn {
+          background-color: hsl(350, 100%, 65%);
+
+          &:hover {
+            background-color: hsl(350, 100%, 55%);
+          }
+        }
+      }
+    }
+
+    /* modify styles for EditForm component */
+    .input-form {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .cancel-btn {
+        background-color: hsl(0, 0%, 70%);
+
+        &:hover {
+          background-color: hsl(0, 0%, 60%);
+        }
+      }
+
+    }
+  }
+
+}
