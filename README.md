@@ -1,4 +1,5 @@
 A CRUD ToDo App using ReactJS. <br />
-State management with: Context API and useReducer. <br />
-Other hook: useState. <br />
-Styled with SASS and Bootstrap icons.
+Tech stacks:<br />
+Creating components with ReactJS.<br />
+Used hooks: ContextAPI, useReducer, useState <br />
+Style with SASS and Bootstrap Icons.<br />
