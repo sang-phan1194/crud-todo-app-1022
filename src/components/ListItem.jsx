@@ -1,23 +1,23 @@
-import { useContext, useState } from "react";
-import { TaskContext } from "../store/context";
-import { delete_task, set_done } from "../store/taskReducer";
-import EditForm from "./EditForm";
+import { useContext, useState } from "react"
+import { TaskContext } from "../store/context"
+import { delete_task, set_done } from "../store/taskReducer"
+import EditForm from "./EditForm"
 
 export default function ListItem({ task }) {
-  const dispatch = useContext(TaskContext)[1];
-  const [isDone, setDone] = useState(task.done);
-  const [isEditingMode, setEditingMode] = useState(false);
+  const dispatch = useContext(TaskContext)[1]
+  const [isDone, setDone] = useState(task.done)
+  const [isEditingMode, setEditingMode] = useState(false)
 
   const handleDelete = () => {
-    dispatch(delete_task(task.id));
-  };
+    dispatch(delete_task(task.id))
+  }
   const toggleDone = () => {
-    setDone(!isDone);
-    dispatch(set_done(task.id));
-  };
+    setDone(!isDone)
+    dispatch(set_done(task.id))
+  }
   const toggleEditingMode = () => {
-    setEditingMode(!isEditingMode);
-  };
+    setEditingMode(!isEditingMode)
+  }
 
   return (
     <li className="list-item-wrapper">
@@ -31,7 +31,10 @@ export default function ListItem({ task }) {
               checked={isDone}
             />
             <label className={isDone ? "checked" : ""} htmlFor={task.id}>
-              {task.content}
+              <span>{task.content}</span>
+              <small>
+                Last updated on: {new Date(task.id).toString().substring(0, 28)}
+              </small>
             </label>
           </div>
           <div className="btn-group">
@@ -48,5 +51,5 @@ export default function ListItem({ task }) {
         <EditForm task={task} toggleEditingMode={toggleEditingMode} />
       ) : null}
     </li>
-  );
+  )
 }
