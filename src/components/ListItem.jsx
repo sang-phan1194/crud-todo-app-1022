@@ -1,4 +1,5 @@
 import { useContext, useState } from "react"
+import { useSelector } from "react-redux"
 import { TaskContext } from "../store/context"
 import { delete_task, set_done } from "../store/taskReducer"
 import EditForm from "./EditForm"
@@ -7,6 +8,9 @@ export default function ListItem({ task }) {
   const dispatch = useContext(TaskContext)[1]
   const [isDone, setDone] = useState(task.done)
   const [isEditingMode, setEditingMode] = useState(false)
+  const listItem_bg_color = useSelector(
+    (state) => state.theme.listItem_bg_color
+  )
 
   const handleDelete = () => {
     dispatch(delete_task(task.id))
@@ -20,7 +24,10 @@ export default function ListItem({ task }) {
   }
 
   return (
-    <li className="list-item-wrapper">
+    <li
+      className="list-item-wrapper"
+      style={{ backgroundColor: listItem_bg_color }}
+    >
       {!isEditingMode ? (
         <>
           <div className="content-wrapper">
